@@ -38,7 +38,7 @@ const router = createBrowserRouter(
     },
   ],
   // { basename: import.meta.env.DEV ? '/MyTools' : '/MyTools' }
-  { basename: '/MyTools' }
+  { basename: '/my-tools' }
 );
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
