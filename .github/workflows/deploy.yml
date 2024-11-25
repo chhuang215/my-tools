@@ -34,6 +34,10 @@ jobs:
         uses: pnpm/action-setup@v4
         with:
           version: 9
+      - uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
