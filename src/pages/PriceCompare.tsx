@@ -4,8 +4,8 @@ type PriceUnitTuple = [price: number | null, unit: number | null];
 
 export default function PriceCompare() {
   const [list, setList] = useState<PriceUnitTuple[]>([
-    [0, 1],
-    [0, 1],
+    [null, null],
+    [null, null],
   ]);
 
   const [history, setHistory] = useState<PriceUnitTuple[][]>([[...list]]);
@@ -51,7 +51,7 @@ export default function PriceCompare() {
           <tr>
             <th>Price</th>
             <th>Unit</th>
-            <th>PricePerUnit</th>
+            <th><span style={{fontSize: ".9rem"}}>Price Per Unit</span></th>
           </tr>
         </thead>
         <tbody>
@@ -59,7 +59,8 @@ export default function PriceCompare() {
             <tr key={i}>
               <td>
                 <input
-                  value={price ?? ''}
+                  value={price ?? ""}
+                  placeholder="0"
                   type="number"
                   onChange={(e) => {
                     handlePriceUnitChange(i, 0, e.target.value);
@@ -69,16 +70,17 @@ export default function PriceCompare() {
               <td>
                 <input
                   value={unit ?? ''}
+                  placeholder="1"
                   type="number"
                   onChange={(e) => {
                     handlePriceUnitChange(i, 1, e.target.value);
                   }}
                 />
               </td>
-              <td>{price && unit ? price / unit : 0}</td>
+              <td> {!price ? 0 : (!unit ? (price / 1) : (price / unit))}</td>
               <td>
                 <button
-                  style={{ padding: '.5rem 1rem' }}
+                  style={{ padding: '.3rem .7rem' }}
                   onClick={() => {
                     handleAddRemoveListItem(list.filter((_, index) => index !== i));
                   }}
@@ -93,7 +95,7 @@ export default function PriceCompare() {
               <button
                 style={{ width: '100%', margin: '6px 0' }}
                 onClick={() => {
-                  handleAddRemoveListItem([...list, [0, 1]]);
+                  handleAddRemoveListItem([...list, [null, null]]);
                 }}
               >
                 Add
