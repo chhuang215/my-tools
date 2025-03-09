@@ -15,7 +15,8 @@ function App() {
           <Link to="/calc1">c1</Link>
           <Link to="/calc2">c2</Link>
           <Link to="/coffeeratio">coffee</Link>
-          <Link to="/pricecompare">$</Link>
+          <Link to="/pricecompare">$compare</Link>
+          <Link to="/sum">sum</Link>
         </nav>
       </header>
       <hr />

@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import { BrowserRouter, createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { BrowserRouter, createBrowserRouter, createHashRouter, RouterProvider } from 'react-router-dom';
 import Calc1 from './pages/Calc1';
 import Calc2 from './pages/Calc2';
 import CoffeeRatio from './pages/CoffeeRatio';
 import PriceCompare from './pages/PriceCompare';
+import Sum from './pages/Sum';
 // import './index.css';
 
-const router = createBrowserRouter(
+const router = createHashRouter(
   [
     {
       path: '/',
@@ -19,26 +20,30 @@ const router = createBrowserRouter(
           element: <>hi</>,
         },
         {
-          path: '/calc1/',
+          path: '/calc1',
           element: <Calc1 />,
         },
         {
-          path: '/calc2/',
+          path: '/calc2',
           element: <Calc2 />,
         },
         {
-          path: '/coffeeratio/',
+          path: '/coffeeratio',
           element: <CoffeeRatio />,
         },
         {
-          path: '/pricecompare/',
+          path: '/pricecompare',
           element: <PriceCompare />,
+        },
+        {
+          path: '/sum',
+          element: <Sum />,
         },
       ],
     },
   ],
   // { basename: import.meta.env.DEV ? '/MyTools' : '/MyTools' }
-  { basename: '/my-tools' }
+  // { basename: '/my-tools' }
 );
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
