@@ -77,7 +77,9 @@ export default function PriceCompare() {
                   }}
                 />
               </td>
-              <td> {!price ? 0 : (!unit ? (price / 1) : (price / unit))}</td>
+              <td>
+                {parseFloat(!price ? "0" : (!unit ? (price / 1).toFixed(3) : (price / unit).toFixed(3)))}
+              </td>
               <td>
                 <button
                   style={{ padding: '.3rem .7rem' }}
