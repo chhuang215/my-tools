@@ -81,11 +81,11 @@ export default function CoffeeRatio() {
       ))}
       <div>
         <label>water ml</label>
-        <input value={waterml ?? ''} onInput={handleWaterChange} type="number" />
+        <input value={waterml ?? ''} onChange={handleWaterChange} type="number" />
       </div>
       <div>
         <label>coffee g</label>
-        <input value={coffeeg ?? ''} onInput={handleCoffeeChange} type="number" />
+        <input value={coffeeg ?? ''} onChange={handleCoffeeChange} type="number" />
       </div>
     </>
   );
