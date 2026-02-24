@@ -1,4 +1,4 @@
-// import { useState } from 'react';
+import { useEffect } from 'react';
 // import reactLogo from './assets/react.svg';
 import { Link, Outlet, Route, Routes } from 'react-router-dom';
 import Calc1 from './pages/Calc1';
@@ -20,6 +20,8 @@ function App() {
         </nav>
       </header>
       <hr />
+      <BannerComponent />
+      <hr />
       <Outlet />
       {/* <Routes>
         <Route path="/" element={<Layout />}>
@@ -35,6 +37,22 @@ function App() {
       </Routes> */}
     </>
   );
+}
+
+function BannerComponent() {
+  useEffect(() => {
+    const bannerDiv = document.getElementById('keepandroidopen-banner');
+    
+    if (bannerDiv && bannerDiv.innerHTML === "") {
+      const script = document.createElement('script');
+      script.src = "https://keepandroidopen.org/banner.js?size=mini&id=keepandroidopen-banner";
+      script.async = true;
+      
+      bannerDiv.appendChild(script);
+    }
+  }, []);
+
+  return <div id="keepandroidopen-banner"></div>;
 }
 
 function Home() {
