@@ -40,7 +40,7 @@ function BannerComponent() {
   useEffect(() => {
     const bannerDiv = document.getElementById('keepandroidopen-banner');
     
-    if (bannerDiv && bannerDiv.innerHTML === "") {
+    if (bannerDiv?.innerHTML === "") {
       const script = document.createElement('script');
       script.src = "https://keepandroidopen.org/banner.js?size=mini&id=keepandroidopen-banner";
       script.async = true;

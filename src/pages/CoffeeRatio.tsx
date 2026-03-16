@@ -27,28 +27,28 @@ export default function CoffeeRatio() {
   }, [selectedBrewType]);
 
   useEffect(() => {
-    setCoffeeg(waterml == null ? null : parseFloat((waterml * ratio).toFixed(2)));
+    setCoffeeg(waterml == null ? null : Number.parseFloat((waterml * ratio).toFixed(2)));
   }, [ratio]);
 
   const handleWaterChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const waterValue = parseFloat(e.target.value);
-    if (isNaN(waterValue)) {
+    const waterValue = Number.parseFloat(e.target.value);
+    if (Number.isNaN(waterValue)) {
       setWaterml(null);
       setCoffeeg(null);
     } else {
       setWaterml(waterValue);
-      setCoffeeg(parseFloat((waterValue * ratio).toFixed(2)));
+      setCoffeeg(Number.parseFloat((waterValue * ratio).toFixed(2)));
     }
   };
 
   const handleCoffeeChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const coffeeValue = parseFloat(e.target.value);
-    if (isNaN(coffeeValue)) {
+    const coffeeValue = Number.parseFloat(e.target.value);
+    if (Number.isNaN(coffeeValue)) {
       setCoffeeg(null);
       setWaterml(null);
     } else {
       setCoffeeg(coffeeValue);
-      setWaterml(parseFloat((coffeeValue / ratio).toFixed(2)));
+      setWaterml(Number.parseFloat((coffeeValue / ratio).toFixed(2)));
     }
   };
 
@@ -80,11 +80,11 @@ export default function CoffeeRatio() {
         </div>
       ))}
       <div>
-        <label>water ml</label>
+        <div>water ml</div>
         <input value={waterml ?? ''} onChange={handleWaterChange} type="number" />
       </div>
       <div>
-        <label>coffee g</label>
+        <div>coffee g</div>
         <input value={coffeeg ?? ''} onChange={handleCoffeeChange} type="number" />
       </div>
     </>

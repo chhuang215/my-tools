@@ -89,25 +89,25 @@ export default function Calc2() {
   };
 
   const handleChangeBuyRate = (e: ChangeEvent<HTMLInputElement>) => {
-    setBuyRate(parseFloat(e.target.value) || 0);
+    setBuyRate(Number.parseFloat(e.target.value) || 0);
   };
   const handleChangeSellRate = (e: ChangeEvent<HTMLInputElement>) => {
-    setSellRate(parseFloat(e.target.value) || 0);
+    setSellRate(Number.parseFloat(e.target.value) || 0);
   };
 
   const updateSellRateAmt = () => {
     const v = sellRate * termDepositAmt;
-    setSellRateAmt(parseFloat(v.toFixed(5)));
+    setSellRateAmt(Number.parseFloat(v.toFixed(5)));
   };
 
   const updateBuyRateAmt = () => {
     const v = buyRate * termDepositAmt;
-    setByRateAmt(parseFloat(v.toFixed(5)));
+    setByRateAmt(Number.parseFloat(v.toFixed(5)));
   };
 
   const updateSellBuyLossAmt = () => {
     const v = (buyRate - sellRate) * termDepositAmt;
-    setSellBuyLossAmt(parseFloat(v.toFixed(5)));
+    setSellBuyLossAmt(Number.parseFloat(v.toFixed(5)));
   };
 
   useEffect(updateSellRateAmt, [termDepositAmt, sellRate]);
@@ -138,7 +138,7 @@ export default function Calc2() {
           type="number"
           defaultValue={termDepositAmt == 0 ? '' : termDepositAmt}
           onChange={(e) => {
-            setTermDepositAmt(parseFloat(e.target.value) || 0);
+            setTermDepositAmt(Number.parseFloat(e.target.value) || 0);
           }}
         />
         <label>Sell Rate </label>
@@ -165,8 +165,8 @@ export default function Calc2() {
             </div>
             {r.rates.map(({ label, rate }, j) => {
               const term = Number(r.period);
-              const interestAmtPerMonth = parseFloat(((termDepositAmt * rate) / 12).toPrecision(5));
-              const interestAmtAfterTerm = parseFloat((interestAmtPerMonth * term).toPrecision(5));
+              const interestAmtPerMonth = Number.parseFloat(((termDepositAmt * rate) / 12).toPrecision(5));
+              const interestAmtAfterTerm = Number.parseFloat((interestAmtPerMonth * term).toPrecision(5));
 
               // const sellAmtAfterTermDone = interestAmtAfterTerm * sellRate;
 
@@ -216,7 +216,7 @@ export default function Calc2() {
                 const rateEl = document.getElementById(`rate-${r.period}`) as HTMLInputElement;
 
                 if (labelEl.value && rateEl.value) {
-                  handleAddRate(i, labelEl.value, parseFloat(rateEl.value));
+                  handleAddRate(i, labelEl.value, Number.parseFloat(rateEl.value));
                   // Clear inputs after adding
                   labelEl.value = '';
                   rateEl.value = '';
@@ -238,7 +238,7 @@ export default function Calc2() {
           onClick={() => {
             const newPeriodEl = document.getElementById(`new-period`) as HTMLInputElement;
 
-            handleAddPeriod(parseInt(newPeriodEl.value));
+            handleAddPeriod(Number.parseInt(newPeriodEl.value));
             newPeriodEl.value = '';
           }}
         >

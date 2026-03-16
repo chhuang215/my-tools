@@ -30,20 +30,20 @@ export default function Calc1() {
   const [minAmtForTransfer, setMinAmtForTransfer] = useState((-transferFee * buyRate) / (sellRate - buyRate));
 
   const handleChangeAmt = (e: ChangeEvent<HTMLInputElement>) => {
-    setAmt(parseFloat(e.target.value) || 0);
+    setAmt(Number.parseFloat(e.target.value) || 0);
   };
 
   const handleChangeBuyRate = (e: ChangeEvent<HTMLInputElement>) => {
-    setBuyRate(parseFloat(e.target.value) || 0);
+    setBuyRate(Number.parseFloat(e.target.value) || 0);
   };
   const handleChangeSellRate = (e: ChangeEvent<HTMLInputElement>) => {
-    setSellRate(parseFloat(e.target.value) || 0);
+    setSellRate(Number.parseFloat(e.target.value) || 0);
   };
   const handleChangeLocalCurrencyTransferFee = (e: ChangeEvent<HTMLInputElement>) => {
-    setLocalCurrencyTransferFee(parseFloat(e.target.value) || 0);
+    setLocalCurrencyTransferFee(Number.parseFloat(e.target.value) || 0);
   };
   const handleChangeTransferFee = (e: ChangeEvent<HTMLInputElement>) => {
-    setTransferFee(parseFloat(e.target.value) || 0);
+    setTransferFee(Number.parseFloat(e.target.value) || 0);
   };
 
   useEffect(() => {
@@ -53,12 +53,12 @@ export default function Calc1() {
 
   useEffect(() => {
     const v = amt * sellRate;
-    setAfterSellRateAmt(parseFloat(v.toFixed(5)));
+    setAfterSellRateAmt(Number.parseFloat(v.toFixed(5)));
   }, [amt, sellRate]);
 
   useEffect(() => {
     const v = (afterSellRateAmt - localCurrencyTransferFee) / buyRate;
-    setAfterSellBuyAmt(parseFloat(v.toFixed(5)));
+    setAfterSellBuyAmt(Number.parseFloat(v.toFixed(5)));
   }, [afterSellRateAmt, buyRate, localCurrencyTransferFee]);
 
   useEffect(() => {
@@ -83,13 +83,13 @@ export default function Calc1() {
         through a direct transfer.
       </p>
 
-      <label>Amount $</label>
+      <div>Amount $</div>
       <input type="number" defaultValue={kv.amt} onChange={handleChangeAmt} />
       <article>
         <h4>Sell and Buy</h4>
-        <label>Sell (Bank A) </label>
+        <div>Sell (Bank A) </div>
         {amt} * <input type="number" defaultValue={kv.sellRate} onChange={handleChangeSellRate} /> = {afterSellRateAmt}
-        <label>Bank A to B transfer fee</label>
+        <div>Bank A to B transfer fee</div>
         {afterSellRateAmt} -{' '}
         <input
           type="number"
@@ -97,7 +97,7 @@ export default function Calc1() {
           onChange={handleChangeLocalCurrencyTransferFee}
         />{' '}
         = {afterSellRateAmt - localCurrencyTransferFee}
-        <label>Buy (Bank B)</label>
+        <div>Buy (Bank B)</div>
         {afterSellRateAmt - localCurrencyTransferFee} /{' '}
         <input type="number" defaultValue={kv.buyRate} onChange={handleChangeBuyRate} /> = <b>{afterSellBuyAmt}</b>
         <br />
@@ -106,7 +106,7 @@ export default function Calc1() {
 
       <article>
         <h4>Direct foreign currency transfer</h4>
-        <label>Transfer Fee </label>
+        <div>Transfer Fee </div>
         {amt} - <input type="number" defaultValue={kv.transferFee} onChange={handleChangeTransferFee} /> ={' '}
         <b>{amt - transferFee}</b>
         <br />
