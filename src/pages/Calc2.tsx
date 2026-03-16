@@ -133,7 +133,7 @@ export default function Calc2() {
     <>
       <article>
         <h4>Sell and Buy term deposit</h4>
-        <label>Deposit amount</label>
+        <div>Deposit amount</div>
         <input
           type="number"
           defaultValue={termDepositAmt == 0 ? '' : termDepositAmt}
@@ -141,10 +141,10 @@ export default function Calc2() {
             setTermDepositAmt(Number.parseFloat(e.target.value) || 0);
           }}
         />
-        <label>Sell Rate </label>
+        <div>Sell Rate </div>
         <input type="number" defaultValue={sellRate} onChange={handleChangeSellRate} /> * {termDepositAmt} ={' '}
         {sellRateAmt}
-        <label>Buy Rate </label>
+        <div>Buy Rate </div>
         <input type="number" defaultValue={buyRate} onChange={handleChangeBuyRate} /> * {termDepositAmt} = {buyRateAmt}
         <br />
         (Loss: {sellBuyLossAmt})

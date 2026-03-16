@@ -59,7 +59,7 @@ export default function PriceCompare() {
           </thead>
           <tbody>
             {list.map(([price, unit], i) => (
-              <tr key={i}>
+              <tr key={'price-unit-' + i}>
                 <td>
                   <input
                     value={price ?? ''}
