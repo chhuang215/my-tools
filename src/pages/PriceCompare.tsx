@@ -46,66 +46,68 @@ export default function PriceCompare() {
       >
         redo
       </button>
-      <table>
-        <thead>
-          <tr>
-            <th>Price</th>
-            <th>Unit</th>
-            <th><span style={{fontSize: ".9rem"}}>Price Per Unit</span></th>
-          </tr>
-        </thead>
-        <tbody>
-          {list.map(([price, unit], i) => (
-            <tr key={i}>
-              <td>
-                <input
-                  value={price ?? ""}
-                  placeholder="0"
-                  type="number"
-                  onChange={(e) => {
-                    handlePriceUnitChange(i, 0, e.target.value);
-                  }}
-                />
-              </td>
-              <td>
-                <input
-                  value={unit ?? ''}
-                  placeholder="1"
-                  type="number"
-                  onChange={(e) => {
-                    handlePriceUnitChange(i, 1, e.target.value);
-                  }}
-                />
-              </td>
-              <td>
-                {parseFloat(!price ? "0" : (!unit ? (price / 1).toFixed(3) : (price / unit).toFixed(3)))}
-              </td>
-              <td>
+      <div className="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Price</th>
+              <th>Unit</th>
+              <th>
+                <span style={{ fontSize: '.9rem' }}>Price Per Unit</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {list.map(([price, unit], i) => (
+              <tr key={i}>
+                <td>
+                  <input
+                    value={price ?? ''}
+                    placeholder="0"
+                    type="number"
+                    onChange={(e) => {
+                      handlePriceUnitChange(i, 0, e.target.value);
+                    }}
+                  />
+                </td>
+                <td>
+                  <input
+                    value={unit ?? ''}
+                    placeholder="1"
+                    type="number"
+                    onChange={(e) => {
+                      handlePriceUnitChange(i, 1, e.target.value);
+                    }}
+                  />
+                </td>
+                <td>{parseFloat(!price ? '0' : !unit ? (price / 1).toFixed(3) : (price / unit).toFixed(3))}</td>
+                <td>
+                  <button
+                    style={{ padding: '.3rem .7rem' }}
+                    onClick={() => {
+                      handleAddRemoveListItem(list.filter((_, index) => index !== i));
+                    }}
+                  >
+                    -
+                  </button>
+                </td>
+              </tr>
+            ))}
+            <tr>
+              <td colSpan={3} style={{ textAlign: 'center' }}>
                 <button
-                  style={{ padding: '.3rem .7rem' }}
+                  style={{ width: '100%', margin: '6px 0' }}
                   onClick={() => {
-                    handleAddRemoveListItem(list.filter((_, index) => index !== i));
+                    handleAddRemoveListItem([...list, [null, null]]);
                   }}
                 >
-                  -
+                  Add
                 </button>
               </td>
             </tr>
-          ))}
-          <tr>
-            <td colSpan={3} style={{ textAlign: 'center' }}>
-              <button
-                style={{ width: '100%', margin: '6px 0' }}
-                onClick={() => {
-                  handleAddRemoveListItem([...list, [null, null]]);
-                }}
-              >
-                Add
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </>
   );
 }

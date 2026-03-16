@@ -67,3 +67,59 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* Responsive helpers and resets */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Make form controls touch-friendly */
+input[type="number"], input, textarea, button {
+  font-size: 1rem;
+  padding: 0.5rem;
+}
+
+/* Utility: full width element for inputs/buttons used in pages */
+.full-width {
+  width: 100%;
+  margin: 6px 0;
+}
+
+/* Table wrapper to allow horizontal scroll on small screens */
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td, th {
+  padding: 0.4rem 0.6rem;
+  text-align: left;
+}
+
+@media (max-width: 640px) {
+  nav {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  input, button {
+    width: 100%;
+    display: block;
+  }
+}

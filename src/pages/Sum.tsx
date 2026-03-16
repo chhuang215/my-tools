@@ -47,55 +47,57 @@ export default function PriceCompare() {
       >
         redo
       </button> */}
-      <table>
-        <thead>
-          <tr>
-            <th>Val</th>
-          </tr>
-        </thead>
-        <tbody>
-          {list.map((val, i) => (
-            <tr key={i}>
-              <td>
-                <input
-                  value={val ?? ''}
-                  type="number"
-                  onChange={(e) => {
-                    handValChange(i, e.target.value);
-                  }}
-                />
+      <div className="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Val</th>
+            </tr>
+          </thead>
+          <tbody>
+            {list.map((val, i) => (
+              <tr key={i}>
+                <td>
+                  <input
+                    value={val ?? ''}
+                    type="number"
+                    onChange={(e) => {
+                      handValChange(i, e.target.value);
+                    }}
+                  />
+                </td>
+                <td>
+                  <button
+                    style={{ padding: '.5rem 1rem' }}
+                    onClick={() => {
+                      handleAddRemoveListItem(list.filter((_, index) => index !== i));
+                    }}
+                  >
+                    -
+                  </button>
+                </td>
+              </tr>
+            ))}
+            <tr>
+              <td colSpan={3} style={{ textAlign: 'center' }}>
+                <span>{sum(list)}</span>
               </td>
-              <td>
+            </tr>
+            <tr>
+              <td colSpan={3} style={{ textAlign: 'center' }}>
                 <button
-                  style={{ padding: '.5rem 1rem' }}
+                  style={{ width: '100%', margin: '6px 0' }}
                   onClick={() => {
-                    handleAddRemoveListItem(list.filter((_, index) => index !== i));
+                    handleAddRemoveListItem([...list, 0]);
                   }}
                 >
-                  -
+                  Add
                 </button>
               </td>
             </tr>
-          ))}
-          <tr>
-            <td colSpan={3} style={{ textAlign: 'center' }}>
-              <span>{sum(list)}</span>
-            </td>
-          </tr>
-          <tr>
-            <td colSpan={3} style={{ textAlign: 'center' }}>
-              <button
-                style={{ width: '100%', margin: '6px 0' }}
-                onClick={() => {
-                  handleAddRemoveListItem([...list, 0]);
-                }}
-              >
-                Add
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </>
   );
 }
